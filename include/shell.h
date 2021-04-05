@@ -2,6 +2,8 @@
 #ifndef SHELL_H
 #define SHELL_H
 
+
+//CHECKS OPERATING SYSTEM
 #ifdef _WIN32
     #include <windows.h>
 #elif __linux__
@@ -14,13 +16,24 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
+#include <filesystem>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <time.h>
+#include <errno.h>
 #include "colors.h"
 
 
+//DEFINES
 #define MAX_BUF_LEN 200
+#define MAX_DIR_LEN 200
 
 
+//namespace
 using namespace std;
+
+
 
 
 class User{
@@ -28,7 +41,7 @@ class User{
         string name;
     public:
         User(){
-            //Change this to get your name
+            //Change this to get your name in the shell
             name = "arin";
         }
 
@@ -37,10 +50,16 @@ class User{
     };
 
         
-
+char *get_dir();
 void bear_evaluate();
 void bear_main();
-void clear();
+int bear_launch(char **args);
+
+
+//BUILTIN FUNCTIONS
+int bear_func(char **args);
+int bear_clear(char **args);
+int bear_exit(char **args);
 
 #endif //SHELL_H
 //HEADER GUARD END
