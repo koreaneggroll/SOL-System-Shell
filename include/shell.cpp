@@ -2,11 +2,11 @@
 
 
 //DATA
-char *builtin[] = {
-    (char*)"bear",
-    (char*)"clear", //clears the screen
-    (char*)"cd",
-    (char*)"exit" //exits the shell
+string builtin[] = {
+    "SOL",
+    "cls", //clears the screen
+    "cd",
+    "exit" //exits the shell
 };
 
 
@@ -14,7 +14,8 @@ char *builtin[] = {
 int (*builtin_func[]) (char **) = {
     &bear_func,
     &bear_clear,
-    &bear_exit
+    &bear_exit,
+    &bear_exit,
 };
 
 int builtin_num(){
@@ -99,7 +100,6 @@ int bear_launch(char **args){
 
 
 int bear_execute(char **args){
-      int i;
 
     if (args[0] == NULL) {
         // An empty command was entered.
@@ -107,8 +107,8 @@ int bear_execute(char **args){
     }
 
     //loops through every function in the array
-    for (i = 0; i < builtin_num(); i++) {
-        if (strcmp(args[0], builtin[i]) == 0) {
+    for (int i = 0; i < builtin_num(); i++) {
+        if (args[0] == builtin[i]) {
             return (*builtin_func[i])(args);
         }
     }
@@ -196,7 +196,7 @@ int bear_func(char **args){
     cout << "The following are all builtin functions of bear shell\n";
 
     for(int i = 0; i < builtin_num(); i++){
-        cout << builtin[i] << endl;
+        cout << "\t" << builtin[i] << endl;
     }
 
     return 1;
@@ -210,13 +210,13 @@ int bear_clear(char **args){
 }
 
 
-int shell_cd(char **args){
+int bear_cd(char **args){
     if (args[1] == NULL) {
         fprintf(stderr, "bear: expected argument to \"cd\"\n");
         return 1;
     } else {
         if (chdir(args[1]) != 0) {
-        perror("bear");
+            perror("bear");
         }
     }
     return 1;
