@@ -2,5 +2,5 @@
 
 
 int main(void){
-    bear_func();
+    bear_main();
 }
