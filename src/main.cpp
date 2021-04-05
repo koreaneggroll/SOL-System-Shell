@@ -1,6 +1,8 @@
 #include "../include/shell.h"
 
 
-int main(void){
+int main(int argc, char **argv){
     bear_main();
+
+    return EXIT_SUCCESS;
 }

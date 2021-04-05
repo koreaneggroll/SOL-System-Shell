@@ -54,7 +54,7 @@ class User{
         
 char *get_dir();
 void bear_evaluate();
-void bear_main();
+void bear_main(void);
 int bear_launch(char **args);
 int bear_execute(char **args);
 char *bear_read_line(void);
@@ -64,6 +64,7 @@ char **bear_split_line(char *line);
 //BUILTIN FUNCTIONS
 int bear_func(char **args);
 int bear_clear(char **args);
+int bear_cd(char **args);
 int bear_exit(char **args);
 
 #endif //SHELL_H
