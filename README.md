@@ -27,7 +27,7 @@
   <br/>
   <br/>
 
-  Bear shell is a shell designed for linux written in C++
+  SOL_System shell is a shell designed for linux written in C++
 
   
 
