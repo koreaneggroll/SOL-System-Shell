@@ -10,10 +10,15 @@
     #error "OS not supported..."
 #endif
 
-
+//INCLUDES
 #include <iostream>
 #include <cmath>
 #include <fstream>
+#include "colors.h"
+
+
+#define MAX_BUF_LEN 200
+
 
 using namespace std;
 
@@ -34,7 +39,8 @@ class User{
         
 
 void bear_evaluate();
-void bear_loop();
+void bear_main();
+void clear();
 
 #endif //SHELL_H
 //HEADER GUARD END
