@@ -2,7 +2,7 @@
 
 
 int main(int argc, char **argv){
-    bear_main();
+    sol_main();
 
     return EXIT_SUCCESS;
 }

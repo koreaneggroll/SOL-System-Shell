@@ -12,10 +12,10 @@ string builtin[] = {
 
 
 int (*builtin_func[]) (char **) = {
-    &bear_func,
-    &bear_clear,
-    &bear_exit,
-    &bear_exit,
+    &sol_func,
+    &sol_clear,
+    &sol_exit,
+    &sol_exit,
 };
 
 int builtin_num(){
@@ -38,7 +38,7 @@ char *get_dir(){
 
 
 
-void bear_main(void){
+void sol_main(void){
     char *buffer;
     char **args;
     int status;
@@ -61,9 +61,9 @@ void bear_main(void){
         #define KWHT  "\x1B[37m"
         */
         cout << "\x1B[33m" << user->get_name() << "\x1B[32m : \x1B[34m" << get_dir() << FRED("  ⟹   ");
-        buffer = bear_read_line();
-        args = bear_split_line(buffer);
-        status = bear_execute(args);
+        buffer = sol_read_line();
+        args = sol_split_line(buffer);
+        status = sol_execute(args);
 
         free(buffer);
         free(args);
@@ -71,7 +71,7 @@ void bear_main(void){
 }
 
 
-int bear_launch(char **args){
+int sol_launch(char **args){
     pid_t pid, wpid;
     int status;
 
@@ -99,7 +99,7 @@ int bear_launch(char **args){
 
 
 
-int bear_execute(char **args){
+int sol_execute(char **args){
 
     if (args[0] == NULL) {
         // An empty command was entered.
@@ -113,13 +113,13 @@ int bear_execute(char **args){
         }
     }
 
-    return bear_launch(args);
+    return sol_launch(args);
 
 }
 
 
 
-char *bear_read_line(void){
+char *sol_read_line(void){
     int bufsize = 1024;
     int position = 0;
     char *buffer = (char*)malloc(sizeof(char) * bufsize);
@@ -154,9 +154,9 @@ char *bear_read_line(void){
     }
 }
 
-#define bear_TOK_DELIM " \t\r\n\a"
+#define sol_TOK_DELIM " \t\r\n\a"
 
-char **bear_split_line(char *line){
+char **sol_split_line(char *line){
     int bufsize = 64, position = 0;
     char **tokens = (char**)malloc(bufsize * sizeof(char*));
     char *token;
@@ -166,7 +166,7 @@ char **bear_split_line(char *line){
         exit(EXIT_FAILURE);
     }
 
-    token = strtok(line, bear_TOK_DELIM);
+    token = strtok(line, sol_TOK_DELIM);
     while (token != NULL) {
         tokens[position] = token;
         position++;
@@ -175,12 +175,12 @@ char **bear_split_line(char *line){
         bufsize += 64;
         tokens = (char**)realloc(tokens, bufsize * sizeof(char*));
         if (!tokens) {
-            fprintf(stderr, "\n\nbear: %s\n\n", strerror(errno));
+            fprintf(stderr, "\n\nsol: %s\n\n", strerror(errno));
             exit(EXIT_FAILURE);
         }
         }
 
-        token = strtok(NULL, bear_TOK_DELIM);
+        token = strtok(NULL, sol_TOK_DELIM);
     }
     tokens[position] = NULL;
     return tokens;
@@ -190,10 +190,10 @@ char **bear_split_line(char *line){
 
 
 
-int bear_func(char **args){
+int sol_func(char **args){
 
 
-    cout << "The following are all builtin functions of bear shell\n";
+    cout << "The following are all builtin functions of sol shell\n";
 
     for(int i = 0; i < builtin_num(); i++){
         cout << "\t" << builtin[i] << endl;
@@ -203,26 +203,26 @@ int bear_func(char **args){
 }
 
 
-int bear_clear(char **args){
+int sol_clear(char **args){
     cout << "\e[1;1H\e[2J";
 
     return 1;
 }
 
 
-int bear_cd(char **args){
+int sol_cd(char **args){
     if (args[1] == NULL) {
-        fprintf(stderr, "bear: expected argument to \"cd\"\n");
+        fprintf(stderr, "sol: expected argument to \"cd\"\n");
         return 1;
     } else {
         if (chdir(args[1]) != 0) {
-            perror("bear");
+            perror("sol");
         }
     }
     return 1;
 }
 
 
-int bear_exit(char **args){
-    return 0;
+int sol_exit(char **args){
+    exit(0);
 }
