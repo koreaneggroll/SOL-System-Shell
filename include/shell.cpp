@@ -2,6 +2,18 @@
 
 
 //DATA
+
+string manuals[] = {
+    "manual",
+    "SOL",
+    "cls",
+    "cd",
+    "fmk",
+    "frm",
+    "time",
+    "exit"
+};
+
 string builtin[] = {
     "SOL",
     "cls", //clears the screen
@@ -9,6 +21,7 @@ string builtin[] = {
     "fmk", //creates a file
     "frm", //removes a file
     "time", //tells the time
+    "manual", //manual for the shell
     "exit" //exits the shell
 };
 
@@ -21,11 +34,17 @@ int (*builtin_func[]) (char **) = {
     &sol_fmk,
     &sol_frm,
     &sol_time,
+    &sol_manual,
     &sol_exit,
 };
 
 int builtin_num(){
     return sizeof(builtin)/sizeof(string);
+}
+
+
+int manual_num(){
+    return sizeof(manuals)/sizeof(string);
 }
 
 
@@ -237,6 +256,7 @@ int sol_cd(char **args){
 }
 
 
+
 int sol_fmk(char **args){
     if(!args[1]){
         cout << "\nsol: please specify a name for the file\n" << endl;
@@ -254,6 +274,7 @@ int sol_fmk(char **args){
 
     return 1;
 }
+
 
 
 int sol_frm(char **args){
@@ -277,6 +298,7 @@ int sol_frm(char **args){
 }
 
 
+
 int sol_time(char **args){
 
     time_t my_time = time(NULL);
@@ -286,6 +308,26 @@ int sol_time(char **args){
     return 1;
 }
 
+
+int sol_manual(char **args){
+    if(!args[1]){
+        cout << "What part of the manual do you want?\nFor example try `manual manual`" << endl;
+        return 1;
+    }
+
+    for(int i = 0; i < manual_num(); i++){
+        if(args[1] == manuals[i]){
+            
+        }
+        else{
+            cout << "\nThat command isn't covered in the manuals\n" << endl;
+            return 1;
+        }
+    }
+
+
+    return 1;
+}
 
 
 int sol_exit(char **args){

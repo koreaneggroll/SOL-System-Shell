@@ -67,6 +67,7 @@ int sol_cd(char **args);
 int sol_fmk(char **args);
 int sol_frm(char **args);
 int sol_time(char **args);
+int sol_manual(char **args);
 int sol_exit(char **args);
 
 #endif //SHELL_H

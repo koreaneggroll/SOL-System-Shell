@@ -1,5 +1,5 @@
 .vscode
-*.txt
+/include/name.txt
 *.o
 *.bin
 tests
