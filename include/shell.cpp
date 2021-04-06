@@ -5,7 +5,8 @@
 string builtin[] = {
     "SOL",
     "cls", //clears the screen
-    "cd",
+    "cd", //changes directory
+    "fmk", //creates a file
     "exit" //exits the shell
 };
 
@@ -14,7 +15,8 @@ string builtin[] = {
 int (*builtin_func[]) (char **) = {
     &sol_func,
     &sol_clear,
-    &sol_exit,
+    &sol_cd,
+    &sol_fmk,
     &sol_exit,
 };
 
@@ -79,12 +81,12 @@ int sol_launch(char **args){
     if (pid == 0) {
         // Child process
         if (execvp(args[0], args) == -1) {
-            perror("shell");
+            cout << args[0] << ": command not found" << endl;
         }
         exit(EXIT_FAILURE);
     } else if (pid < 0) {
         // Error forking
-        perror("shell");
+        perror("sol");
     } else {
         // Parent process
         do {
@@ -212,13 +214,32 @@ int sol_clear(char **args){
 
 int sol_cd(char **args){
     if (!args[1]) {
-        cout << "\nsol: expected argument to \"cd\"" << endl;
+        cout << "\nsol: expected argument to \"cd\"\n" << endl;
         return 1;
     } else {
         if (chdir(args[1]) == -1) {
             perror("sol");
         }
     }
+    return 1;
+}
+
+
+int sol_fmk(char **args){
+    if(!args[1]){
+        cout << "\nsol: please specify a name for the file\n" << endl;
+        return 1;
+    }
+
+    FILE *fptr = fopen(args[1], "w");
+
+    if(!fptr){
+        cout << "\nsol: couldn't create file\n" << endl;
+        return 1;
+    }
+
+    fclose(fptr);
+
     return 1;
 }
 
