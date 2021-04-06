@@ -79,7 +79,7 @@ int sol_launch(char **args){
     if (pid == 0) {
         // Child process
         if (execvp(args[0], args) == -1) {
-        perror("shell");
+            perror("shell");
         }
         exit(EXIT_FAILURE);
     } else if (pid < 0) {
@@ -88,7 +88,7 @@ int sol_launch(char **args){
     } else {
         // Parent process
         do {
-        wpid = waitpid(pid, &status, WUNTRACED);
+            wpid = waitpid(pid, &status, WUNTRACED);
         } while (!WIFEXITED(status) && !WIFSIGNALED(status));
     }
 
@@ -126,7 +126,7 @@ char *sol_read_line(void){
     int c;
 
     if (!buffer) {
-        fprintf(stderr, "\n\nshell: %s\n\n", strerror(errno));
+        cout << "\n\nsol: " << strerror(errno) << "\n" << endl;
         exit(EXIT_FAILURE);
     }
 
@@ -147,7 +147,7 @@ char *sol_read_line(void){
             bufsize += 1024;
             buffer = (char*)realloc(buffer, bufsize);
             if (!buffer) {
-                fprintf(stderr, "\n\nshell: %s\n\n", strerror(errno));
+                cout << "\n\nsol: " << strerror(errno) << "\n" << endl;
                 exit(EXIT_FAILURE);
             }
         }
@@ -162,7 +162,7 @@ char **sol_split_line(char *line){
     char *token;
 
     if (!tokens) {
-        fprintf(stderr, "\n\nshell: %s\n\n", strerror(errno));
+        cout << "\n\nsol: " << strerror(errno) << "\n" << endl;
         exit(EXIT_FAILURE);
     }
 
@@ -172,12 +172,12 @@ char **sol_split_line(char *line){
         position++;
 
         if (position >= bufsize) {
-        bufsize += 64;
-        tokens = (char**)realloc(tokens, bufsize * sizeof(char*));
-        if (!tokens) {
-            fprintf(stderr, "\n\nsol: %s\n\n", strerror(errno));
-            exit(EXIT_FAILURE);
-        }
+            bufsize += 64;
+            tokens = (char**)realloc(tokens, bufsize * sizeof(char*));
+            if (!tokens) {
+                cout << "\n\nsol: " << strerror(errno) << "\n" << endl;
+                exit(EXIT_FAILURE);
+            }
         }
 
         token = strtok(NULL, sol_TOK_DELIM);
@@ -211,11 +211,11 @@ int sol_clear(char **args){
 
 
 int sol_cd(char **args){
-    if (args[1] == NULL) {
-        fprintf(stderr, "sol: expected argument to \"cd\"\n");
+    if (!args[1]) {
+        cout << "\nsol: expected argument to \"cd\"" << endl;
         return 1;
     } else {
-        if (chdir(args[1]) != 0) {
+        if (chdir(args[1]) == -1) {
             perror("sol");
         }
     }
