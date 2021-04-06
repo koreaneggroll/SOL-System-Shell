@@ -7,6 +7,7 @@ string builtin[] = {
     "cls", //clears the screen
     "cd", //changes directory
     "fmk", //creates a file
+    "time", //tells the time
     "exit" //exits the shell
 };
 
@@ -17,6 +18,7 @@ int (*builtin_func[]) (char **) = {
     &sol_clear,
     &sol_cd,
     &sol_fmk,
+    &sol_time,
     &sol_exit,
 };
 
@@ -62,7 +64,11 @@ void sol_main(void){
         #define KCYN  "\x1B[36m"
         #define KWHT  "\x1B[37m"
         */
+
+        //Here you can how the prompt looks, do it anyway you like
         cout << "\x1B[33m" << user->get_name() << "\x1B[32m : \x1B[34m" << get_dir() << FRED("  ⟹   ");
+
+
         buffer = sol_read_line();
         args = sol_split_line(buffer);
         status = sol_execute(args);
@@ -242,6 +248,18 @@ int sol_fmk(char **args){
 
     return 1;
 }
+
+
+
+int sol_time(char **args){
+
+    time_t my_time = time(NULL);
+
+    cout << ctime(&my_time);
+
+    return 1;
+}
+
 
 
 int sol_exit(char **args){
