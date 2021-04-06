@@ -7,6 +7,7 @@ string builtin[] = {
     "cls", //clears the screen
     "cd", //changes directory
     "fmk", //creates a file
+    "frm", //removes a file
     "time", //tells the time
     "exit" //exits the shell
 };
@@ -18,6 +19,7 @@ int (*builtin_func[]) (char **) = {
     &sol_clear,
     &sol_cd,
     &sol_fmk,
+    &sol_frm,
     &sol_time,
     &sol_exit,
 };
@@ -220,11 +222,15 @@ int sol_clear(char **args){
 
 int sol_cd(char **args){
     if (!args[1]) {
-        cout << "\nsol: expected argument to \"cd\"\n" << endl;
+        if(!chdir("/home/") == -1){
+            cout << "\nCouldn't cd to that directory\n" << endl;
+            return 1; 
+        }
         return 1;
     } else {
         if (chdir(args[1]) == -1) {
-            perror("sol");
+            cout << "\nCouldn't cd to that directory\n" << endl;
+            return 1;
         }
     }
     return 1;
@@ -249,6 +255,26 @@ int sol_fmk(char **args){
     return 1;
 }
 
+
+int sol_frm(char **args){
+    if(!args[1]){
+        cout << "\nsol: please specify the name of the file you want to delete\n" << endl;
+        return 1;
+    }
+
+    if(remove(args[1]) == 0){
+        cout << "\nFile deleted succesfully\n" << endl;
+        return 1;
+    }
+
+    else{
+        cout << "\nFile couldn't be deleted\n" << endl;
+        return 1;
+    }
+
+
+    return 1;
+}
 
 
 int sol_time(char **args){
