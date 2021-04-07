@@ -38,9 +38,12 @@ int (*builtin_func[]) (char **) = {
     &sol_exit,
 };
 
+
+
 int builtin_num(){
     return sizeof(builtin)/sizeof(string);
 }
+
 
 
 int manual_num(){
@@ -53,13 +56,13 @@ string User::get_name(){
 }
 
 
+
 char *get_dir(){
     char *directory;
     getcwd(directory, MAX_DIR_LEN);
 
     return directory;
 }
-
 
 
 
@@ -314,17 +317,42 @@ int sol_manual(char **args){
         cout << "What part of the manual do you want?\nFor example try `manual manual`" << endl;
         return 1;
     }
-
-    for(int i = 0; i < manual_num(); i++){
-        if(args[1] == manuals[i]){
-            
-        }
-        else{
-            cout << "\nThat command isn't covered in the manuals\n" << endl;
-            return 1;
-        }
+    if(args[1] == "manual"){
+        man_manual();
+        return 1;
     }
-
+    else if(args[1] == "SOL"){
+        man_SOL();
+        return 1;
+    }
+    else if(args[1] == "cls"){
+        man_cls();
+        return 1;
+    }
+    else if(args[1] == "cd"){
+        man_cd();
+        return 1;
+    }
+    else if(args[1] == "fmk"){
+        man_fmk();
+        return 1;
+    }
+    else if(args[1] == "frm"){
+        man_frm();
+        return 1;
+    }
+    else if(args[1] == "time"){
+        man_time();
+        return 1;
+    }
+    else if(args[1] == "exit"){
+        man_exit();
+        return 1;
+    }
+    else{
+        cout << "\nCommand not supported by manual\n" << endl;
+        return 1;
+    }
 
     return 1;
 }
@@ -332,4 +360,67 @@ int sol_manual(char **args){
 
 int sol_exit(char **args){
     exit(0);
+}
+
+
+
+
+//FUNCTIONS FOR THE MANUALS
+void man_manual(){
+    FILE *fptr;
+
+    fptr = fopen("manual.txt", "w");
+
+    fprintf(fptr, "NAME\n\n\tmanual - an interface to the system refferences\n\n");
+    fprintf(fptr, "USE\n\n\tmanual ");
+
+    for(int i = 0; i < manual_num(); i++){
+        fprintf(fptr, "%s/", manuals[i].c_str());
+    }
+
+    fclose(fptr);
+
+    system("nano manual.txt");
+
+
+    system("rm manual.txt");
+
+
+    
+
+}
+
+
+void man_SOL(){
+
+}
+
+
+void man_cls(){
+
+}
+
+
+void man_cd(){
+    
+}
+
+
+void man_fmk(){
+
+}
+
+
+void man_frm(){
+
+}
+
+
+void man_time(){
+
+}
+
+
+void man_exit(){
+    
 }

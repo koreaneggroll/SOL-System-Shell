@@ -70,5 +70,16 @@ int sol_time(char **args);
 int sol_manual(char **args);
 int sol_exit(char **args);
 
+
+//FUNCTIONS FOR THE MANUALS
+void man_manual();
+void man_SOL();
+void man_cls();
+void man_cd();
+void man_fmk();
+void man_frm();
+void man_time();
+void man_exit();
+
 #endif //SHELL_H
 //HEADER GUARD END
