@@ -372,7 +372,7 @@ void man_manual(){
     fptr = fopen("manual.txt", "w");
 
     fprintf(fptr, "NAME\n\n\tmanual - an interface to the system refferences\n\n");
-    fprintf(fptr, "USE\n\n\tmanual ");
+    fprintf(fptr, "USE\n\n\t> manual ");
 
     for(int i = 0; i < manual_num(); i++){
         fprintf(fptr, "%s/", manuals[i].c_str());
@@ -389,12 +389,39 @@ void man_manual(){
 
 
 void man_SOL(){
+    FILE *fptr;
+
+    fptr = fopen("SOL.txt", "w");
+
+    fprintf(fptr, "NAME\n\n\tSOL - an interface for all commands to be shown\n\n");
+    fprintf(fptr, "USE\n\n\t> SOL\n\tOutput: \n");
+
+    for(int i = 0; i < builtin_num(); i++){
+        fprintf(fptr, "\t%s\n", builtin[i].c_str());
+    }
+
+    fclose(fptr);
+
+    system("nano ./SOL.txt");
+
+    system("rm ./SOL.txt");
 
 }
 
 
 void man_cls(){
+    FILE *fptr;
 
+    fptr = fopen("cls.txt", "w");
+
+    fprintf(fptr, "NAME\n\n\tcls - clears the terminal screen\n\n");
+    fprintf(fptr, "USE\n\n\t> cls -> clears the screen\n\n");
+
+    fclose(fptr);
+
+    system("nano ./cls.txt");
+
+    system("rm ./cls.txt");
 }
 
 
