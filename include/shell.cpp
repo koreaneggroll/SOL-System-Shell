@@ -472,7 +472,7 @@ void man_fmk(){
 	fptr = fopen("fmk.txt", "w");
 
 	fprintf(fptr, "NAME\n\n\tfmk - creates a file in the current directory\n\n");
-	fprintf(fptr, "USE\n\n\t> fmk [file name.*]");
+	fprintf(fptr, "USE\n\n\t> fmk [file name.*] -> creates a file with the specified name");
 
 	fclose(fptr);
 
@@ -483,7 +483,18 @@ void man_fmk(){
 
 
 void man_frm(){
+	FILE *fptr;
+	
+	fptr = fopen("frm.txt", "w");
 
+	fprintf(fptr, "NAME\n\n\tfrm - removes a file from the current directory\n\n");
+	fprintf(fptr, "USE\n\n\t> frm [file name.*] -> removes the specified file if it was found");
+
+	fclose(fptr);
+
+	system("nano ./frm.txt");
+
+	system("rm ./frm.txt");
 }
 
 
