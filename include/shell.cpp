@@ -515,5 +515,18 @@ void man_time(){
 
 
 void man_exit(){
-    
+	FILE *fptr;
+
+	fptr = fopen("exit.txt", "w");
+	
+	fprintf(fptr, "NAME\n\n\texit - exits the shell completely");
+	fprintf(fptr, "USE\n\n\t> exit -> exits the program and returns to your default shell");
+
+	fclose(fptr);
+
+	system("nano ./exit.txt");
+
+	system("rm ./exit.txt");
 }
+
+
