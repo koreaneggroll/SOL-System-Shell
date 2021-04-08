@@ -23,11 +23,27 @@
                        :
                        :
   
-  <br/>
-  <br/>
-  <br/>
+  <br/><br/><br/>
 
   SOL_System shell is a shell designed for linux written in C++
+
+
+  <br/><br/><br/>
+
+  How to use:
+  download the shell. Go into the directory and run:
+    
+    
+    make
+    ./build/shell.bin
+
+
+  From here you can use the `manual` command. For example:
+
+
+    manual manual
+
+  <br/><br/><br/>
 
   
 
