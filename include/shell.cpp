@@ -467,7 +467,18 @@ void man_cd(){
 
 
 void man_fmk(){
+	FILE *fptr;
 
+	fptr = fopen("fmk.txt", "w");
+
+	fprintf(fptr, "NAME\n\n\tfmk - creates a file in the current directory\n\n");
+	fprintf(fptr, "USE\n\n\t> fmk [file name.*]");
+
+	fclose(fptr);
+
+	system("nano ./fmk.txt");
+
+	system("rm ./fmk.txt");
 }
 
 
