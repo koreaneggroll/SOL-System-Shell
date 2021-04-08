@@ -499,7 +499,18 @@ void man_frm(){
 
 
 void man_time(){
+	FILE *fptr;
 
+	fptr = fopen("time.txt", "w");
+
+	fprintf(fptr, "NAME\n\n\ttime - tells the current date and time\n\n");
+	fprintf(fptr, "USE\n\n\t> time -> returns the current date and time");
+
+	fclose(fptr);
+
+	system("nano ./time.txt");
+
+	system("rm ./time.txt");
 }
 
 
