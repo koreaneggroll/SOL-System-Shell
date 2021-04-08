@@ -25,6 +25,7 @@ string builtin[] = {
     "time", //tells the time
     "manual", //manual for the shell
     "his", //reads the command history
+    "crdir", //creates a directory
     "exit" //exits the shell
 };
 
@@ -382,6 +383,25 @@ int sol_his(char **args){
     }
 
     return 1;
+}
+
+
+int sol_crdir(char **args){
+
+        if(!args){
+            cout << "\n\nPlease specify a name for the directory\n" << endl;
+            return 1;
+        }
+    
+        const char *command = "mkdir ";
+
+        strcmp(command, args[1]);
+    
+        //Couldn't find anything else alright? don't judge me :(
+        system(command);
+
+
+        return 1;
 }
 
 

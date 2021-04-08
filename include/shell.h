@@ -24,6 +24,7 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 #include "colors.h"
 
 
@@ -69,6 +70,7 @@ int sol_frm(char **args);
 int sol_time(char **args);
 int sol_manual(char **args);
 int sol_his(char **args);
+int sol_crdir(char **args);
 int sol_exit(char **args);
 
 
