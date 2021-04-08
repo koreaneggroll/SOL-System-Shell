@@ -3,6 +3,8 @@
 
 //DATA
 
+char *history[100];
+
 string manuals[] = {
     "manual",
     "SOL",
@@ -22,6 +24,7 @@ string builtin[] = {
     "frm", //removes a file
     "time", //tells the time
     "manual", //manual for the shell
+    "his", //reads the command history
     "exit" //exits the shell
 };
 
@@ -35,6 +38,7 @@ int (*builtin_func[]) (char **) = {
     &sol_frm,
     &sol_time,
     &sol_manual,
+    &sol_his,
     &sol_exit,
 };
 
@@ -48,6 +52,11 @@ int builtin_num(){
 
 int manual_num(){
     return sizeof(manuals)/sizeof(string);
+}
+
+
+int history_num(){
+    return sizeof(history)/sizeof(string);
 }
 
 
@@ -70,8 +79,9 @@ void sol_main(void){
     char *buffer;
     char **args;
     int status;
+    int i = 0;
     User *user = new User();
-    string name = user->get_name();
+    //string name = user->get_name();
     
     //Clears the screen before the shell starts
     cout << "\e[1;1H\e[2J";
@@ -94,6 +104,12 @@ void sol_main(void){
 
 
         buffer = sol_read_line();
+
+        history[i] = buffer;
+        i++;
+        
+
+
         args = sol_split_line(buffer);
         status = sol_execute(args);
 
@@ -358,6 +374,17 @@ int sol_manual(char **args){
 }
 
 
+int sol_his(char **args){
+    cout << "Your command history: ";
+    
+    for(int i = 0; history[i] != NULL; i++){
+        cout << "\t" << history[i] << endl;
+    }
+
+    return 1;
+}
+
+
 int sol_exit(char **args){
     exit(0);
 }
@@ -419,11 +446,8 @@ void man_cls(){
 
     fclose(fptr);
 
-    system("nano ./cls.txt");
-
-    system("rm ./cls.txt");
-
 }
+
 
 
 void man_cd(){
