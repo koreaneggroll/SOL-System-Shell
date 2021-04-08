@@ -3,14 +3,12 @@
 #define SHELL_H
 
 
-//CHECKS OPERATING SYSTEM
-#ifdef _WIN32
-    #include <windows.h>
-#elif __linux__
+#ifdef __linux__
     #include <unistd.h>
 #else
     #error "OS not supported..."
 #endif
+
 
 //INCLUDES
 #include <iostream>

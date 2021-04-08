@@ -380,13 +380,10 @@ void man_manual(){
 
     fclose(fptr);
 
-    system("nano manual.txt");
+    system("nano ./manual.txt");
 
 
-    system("rm manual.txt");
-
-
-    
+    system("rm ./manual.txt");
 
 }
 
