@@ -317,35 +317,35 @@ int sol_manual(char **args){
         cout << "What part of the manual do you want?\nFor example try `manual manual`" << endl;
         return 1;
     }
-    if(args[1] == "manual"){
+    if(strcmp(args[1], "manual") == 0){
         man_manual();
         return 1;
     }
-    else if(args[1] == "SOL"){
+    else if(strcmp(args[1], "SOL") == 0){
         man_SOL();
         return 1;
     }
-    else if(args[1] == "cls"){
+    else if(strcmp(args[1], "cls") == 0){
         man_cls();
         return 1;
     }
-    else if(args[1] == "cd"){
+    else if(strcmp(args[1], "cd") == 0){
         man_cd();
         return 1;
     }
-    else if(args[1] == "fmk"){
+    else if(strcmp(args[1], "fmk") == 0){
         man_fmk();
         return 1;
     }
-    else if(args[1] == "frm"){
+    else if(strcmp(args[1], "frm") == 0){
         man_frm();
         return 1;
     }
-    else if(args[1] == "time"){
+    else if(strcmp(args[1], "time") == 0){
         man_time();
         return 1;
     }
-    else if(args[1] == "exit"){
+    else if(strcmp(args[1], "exit") == 0){
         man_exit();
         return 1;
     }
