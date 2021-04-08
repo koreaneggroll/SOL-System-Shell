@@ -422,11 +422,23 @@ void man_cls(){
     system("nano ./cls.txt");
 
     system("rm ./cls.txt");
+
 }
 
 
 void man_cd(){
-    
+    FILE *fptr;
+
+    fptr = fopen("cd.txt", "w");
+
+    fprintf(fptr, "NAME\n\n\tcd - changes directory\n\n");
+    fprintf(fptr, "USE\n\n\t> cd [directory] -> goes into the specified directory\n\n");
+
+    fclose(fptr);
+
+    system("nano ./cd.txt");
+
+    system("rm ./cd.txt");
 }
 
 
