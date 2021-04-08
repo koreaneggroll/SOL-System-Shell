@@ -26,6 +26,7 @@ string builtin[] = {
     "manual", //manual for the shell
     "his", //reads the command history
     "crdir", //creates a directory
+    "cat", //prints out the contents of a file
     "exit" //exits the shell
 };
 
@@ -40,6 +41,8 @@ int (*builtin_func[]) (char **) = {
     &sol_time,
     &sol_manual,
     &sol_his,
+    &sol_crdir,
+    &sol_cat,
     &sol_exit,
 };
 
@@ -400,6 +403,24 @@ int sol_crdir(char **args){
         //Couldn't find anything else alright? don't judge me :(
         system(command);
 
+
+        return 1;
+}
+
+
+int sol_cat(char **args){
+        fstream file(args[1]);
+
+        if(!file){
+                cout << "\n\nCouldn't open file\n" << endl;
+                return 1;
+        }
+
+        if(file.is_open()){
+                cout << file.rdbuf();
+        }
+
+        cout << endl;
 
         return 1;
 }
