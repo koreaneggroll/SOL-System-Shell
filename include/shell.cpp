@@ -586,6 +586,38 @@ void man_time(){
 }
 
 
+
+void man_his(){
+    ofstream file("his.txt");
+
+    file << "NAME\n\n\this - prints out your command history\n\n";
+    file << "USE\n\n\t> his -> command history";
+
+    file.close();
+
+    system("nano ./his.txt");
+
+    system("rm ./his.txt");
+}
+
+
+void man_crdir(){
+    ofstream file("crdir.txt");
+
+    file << "NAME\n\n\tcrdir - creates a directory with the specified name\n\n";
+    file << "USE\n\n\t> crdir [dir name] -> creates the directory";
+
+    file.close();
+
+    system("nano ./crdir.txt");
+    
+    system("rm ./crdir.txt");
+}
+
+
+
+
+
 void man_exit(){
 	FILE *fptr;
 
