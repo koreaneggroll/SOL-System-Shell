@@ -23,12 +23,12 @@
                        :
                        :
   
-  <br/><br/><br/>
+  <br/>
 
-  SOL_System shell is a shell designed for linux written in C++
+  SOL-System shell is a shell designed for linux written in C++
 
 
-  <br/><br/><br/>
+  <br/>
 
   How to use:
   download the shell. Go into the directory and run:
@@ -43,7 +43,7 @@
 
     manual manual
 
-  <br/><br/><br/>
+  <br/>
 
   
 
