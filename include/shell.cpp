@@ -26,7 +26,8 @@ string builtin[] = {
     "manual", //manual for the shell
     "his", //reads the command history
     "crdir", //creates a directory
-    "cat", //prints out the contents of a file
+    "dog", //prints out the contents of a file
+    "copy", //copies a file into another file
     "exit" //exits the shell
 };
 
@@ -42,7 +43,8 @@ int (*builtin_func[]) (char **) = {
     &sol_manual,
     &sol_his,
     &sol_crdir,
-    &sol_cat,
+    &sol_dog,
+    &sol_copy,
     &sol_exit,
 };
 
@@ -408,7 +410,7 @@ int sol_crdir(char **args){
 }
 
 
-int sol_cat(char **args){
+int sol_dog(char **args){
         fstream file(args[1]);
 
         if(!file){
@@ -426,8 +428,37 @@ int sol_cat(char **args){
 }
 
 
+int sol_copy(char **args){
+        
+        if(!args[1] || !args[2]){
+                cout << "\nPlease specify the files\n" << endl;
+                return 1;
+        }
+
+        ifstream file(args[1]);
+        
+
+        string const file_contents = static_cast<ostringstream&>
+        (ostringstream{} << file.rdbuf()).str();
+
+
+        //this was used for testing purposes
+       //cout << file_contents << endl;
+
+
+        ofstream copy_file(args[2]);
+
+        copy_file << file_contents;
+
+
+        copy_file.close();
+
+        return 1;
+}
+
+
 int sol_exit(char **args){
-    exit(0);
+        exit(0);
 }
 
 
