@@ -85,6 +85,10 @@ void man_cd();
 void man_fmk();
 void man_frm();
 void man_time();
+void man_his();
+void man_crdir();
+void man_dog();
+void man_copy();
 void man_exit();
 
 #endif //SHELL_H

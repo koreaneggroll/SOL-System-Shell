@@ -13,6 +13,10 @@ string manuals[] = {
     "fmk",
     "frm",
     "time",
+    "his",
+    "crdir",
+    "dog",
+    "copy",
     "exit"
 };
 
@@ -371,6 +375,22 @@ int sol_manual(char **args){
         man_exit();
         return 1;
     }
+    else if(strcmp(args[1], "his") == 0){
+        man_his();
+        return 1;
+    }
+    else if(strcmp(args[1], "crdir") == 0){
+        man_crdir();
+        return 1;
+    }
+    else if(strcmp(args[1], "dog") == 0){
+        man_dog();
+        return 1;
+    }
+    else if(strcmp(args[1], "copy") == 0){
+        man_copy();
+        return 1;
+    }
     else{
         cout << "\nCommand not supported by manual\n" << endl;
         return 1;
@@ -615,7 +635,32 @@ void man_crdir(){
 }
 
 
+void man_dog(){
+    ofstream file("dog.txt");
 
+    file << "NAME\n\n\tdog - reads the contents of a file\n\n";
+    file << "USE\n\n\t> dog [file name.*] -> prints out the contents of that file";
+
+    file.close();
+
+    system("nano ./dog.txt");
+
+    system("rm ./dog.txt");
+}
+
+
+void man_copy(){
+    ofstream file("copy.txt");
+
+    file << "NAME\n\n\tcopy - copies the content of a file in another file\n\n";
+    file << "USE\n\n\t> copy [file name.*] [copy file.*]";
+
+    file.close();
+
+    system("nano ./copy.txt");
+
+    system("rm ./copy.txt");
+}
 
 
 void man_exit(){
