@@ -43,6 +43,9 @@
 
     manual manual
 
+  
+  Or just download the latest release(which might still have some bugs in it)
+
   <br/>
 
   
